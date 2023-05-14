@@ -48,21 +48,28 @@ conda install numpy matplotlib tqdm imageio
 
 ## Reproduce
 You can train the model on NeRF synthetic dataset within 3 minutes. Here datadir is the dataset folder path. Dataname is the scene name. Basedir is the log folder path. Data_r is the ratio between the used point number and the initialized point number. Splatting_r is the radius for the splatting.
+
+If you are using SLURM, then you can try running, once you adjust the job details (e.g. email to notify, GPU).
+
 ```bash
-python main.py --datadir xxx --dataname hotdog --basedir xxx --data_r 0.012 --splatting_r 0.015
+sbatch train_hotdog_1.slurm
 ```
-After around three minutes, you can see the following output (the example is tested on one A100 GPU):
+
+`train_hotdog_1.slurm` all the way through `train_hotdog_40.slurm` are different experiments with different parameters or losses.
+
+After around 15 - 30 minutes, you can see the following output (the example is tested on one A100 GPU):
 
 ```
-Training time: 148.59 s
-Rendering quality: 34.70 dB
-Rendering speed: 120.01 fps
-Model size: 7.32 MB
+Training time: ###.## s
+Rendering quality: ##.## dB
+Rendering speed: ###.## fps
+Model size: #.## MB
 ```
 
 ## Citation
 
-If you find this work useful for your research, please consider citing:
+Our work is build off of:
+
 ```
 @article{zhang2022differentiable,
   title={Differentiable Point-Based Radiance Fields for Efficient View Synthesis},

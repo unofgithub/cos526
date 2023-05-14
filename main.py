@@ -29,12 +29,13 @@ class Trainder(object):
         self.weightpath = safe_path(os.path.join(self.logpath, 'weight'))
         self.imgpath = safe_path(os.path.join(self.outpath, 'images'))
         self.imgpath = safe_path(os.path.join(self.imgpath, '{}'.format(self.dataname)))
-        self.logfile = os.path.join(self.outpath, 'log_{}_{}_{}_{}_{}_{}_{}_{}.txt'.format(self.dataname,
+        self.logfile = os.path.join(self.outpath, 'log_{}_{}_{}_{}_{}_{}_{}_{}_{}.txt'.format(self.dataname,
             "msssim" + self.args.use_msssim, "msssim_coeff" + str(self.args.lr_msssim), 
             "edges" + self.args.use_edges, "edges_coeff" + str(self.args.lr_edges),
             "canny_sigma" + str(self.args.canny_sigma),
             "canny_low" + str(self.args.canny_low), 
-            "canny_high" + str(self.args.canny_high)))
+            "canny_high" + str(self.args.canny_high),
+            "dists" + self.args.use_dists))
         self.logfile = open(self.logfile, 'w')
         self.model = CoreModel(args).to(device)
         self.loss_fn = torch.nn.MSELoss()
@@ -53,7 +54,8 @@ class Trainder(object):
                                      "edges_coeff" + str(self.args.lr_edges) + \
                                         "canny_sigma" + str(self.args.canny_sigma) + \
                                             "canny_low" + str(self.args.canny_low) + \
-                                                   "canny_high" + str(self.args.canny_high)))
+                                                   "canny_high" + str(self.args.canny_high) + \
+                                                    "dists" + self.args.use_dists))
         if args.use_edges == "True":
             safe_path(os.path.join(self.imgpath,
                         'v2_{:.3f}_{:.3f}'.format(args.data_r, args.splatting_r), 
@@ -63,14 +65,15 @@ class Trainder(object):
                                      "edges_coeff" + str(self.args.lr_edges) + \
                                         "canny_sigma" + str(self.args.canny_sigma) + \
                                             "canny_low" + str(self.args.canny_low) + \
-                                                   "canny_high" + str(self.args.canny_high),
+                                                   "canny_high" + str(self.args.canny_high) + \
+                                                    "dists" + self.args.use_dists,
                                         "train"))
         self.training_time = 0
         print(self.imgout_path)
 
         self.ms_ssim = MS_SSIM(win_size=11, win_sigma=1.5, data_range=1.0, size_average=True)
-        self.normalize = transforms.Normalize(mean=[0.406, 0.456, 0.485],
-                                 std=[0.225, 0.224, 0.229])
+        #self.normalize = transforms.Normalize(mean=[0.406, 0.456, 0.485],
+        #                         std=[0.225, 0.224, 0.229])
         self.D = DISTS().to(device)
         self.coeff_edgeloss = args.lr_edges
         self.coeff_msssimloss = args.lr_msssim
@@ -130,10 +133,10 @@ class Trainder(object):
 
                 if self.args.use_dists == "True":
                     # probably something to do with how the images are normalized...check this
-                    normalized_predicted = self.normalize(images[0].permute(2,0,1).unsqueeze(dim=0))
-                    normalized_gt = self.normalize(self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0))
-                    dists_loss = self.D(normalized_predicted, normalized_gt, require_grad=True, batch_average=True) 
-                    tot_loss = tot_loss + dists_loss
+                    #normalized_predicted = self.normalize(images[0].permute(2,0,1).unsqueeze(dim=0))
+                    #normalized_gt = self.normalize(self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0))
+                    dists_loss = self.D(images[0].permute(2,0,1).unsqueeze(dim=0), self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0), require_grad=True, batch_average=True) 
+                    tot_loss = tot_loss + 0.1 * dists_loss
 
                 if self.args.use_edges == "True":
                     canny_predicted = self.canny_custom(images[0].permute(2,0,1).unsqueeze(dim=0)) # 1, 1, H, W
@@ -232,10 +235,10 @@ class Trainder(object):
 
                 if self.args.use_dists == "True":
                     # probably something to do with how the images are normalized...check this
-                    normalized_predicted = self.normalize(images[0].permute(2,0,1).unsqueeze(dim=0))
-                    normalized_gt = self.normalize(self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0))
-                    dists_loss = self.D(normalized_predicted, normalized_gt, require_grad=True, batch_average=True) 
-                    tot_loss = tot_loss + dists_loss
+                    #normalized_predicted = self.normalize(images[0].permute(2,0,1).unsqueeze(dim=0))
+                    #normalized_gt = self.normalize(self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0))
+                    dists_loss = self.D(images[0].permute(2,0,1).unsqueeze(dim=0), self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0), require_grad=True, batch_average=True) 
+                    tot_loss = tot_loss + 0.1 * dists_loss
 
                 if self.args.use_edges == "True":
                     canny_predicted = self.canny_custom(images[0].permute(2,0,1).unsqueeze(dim=0))
