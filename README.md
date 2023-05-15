@@ -44,7 +44,7 @@ pip install DISTS-pytorch
 pip install kornia
 ```
 
-# Note
+## Note
 If using DISTS (not required in most of our experiments), the SLURM node must have internet capabilities to download a pretrained VGG. To bypass this, download the pretrained VGG in advance and modify the local DISTS package to use the version you downloaded.
 
 ## Reproduce
