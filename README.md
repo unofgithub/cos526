@@ -52,6 +52,8 @@ You can train the model on NeRF synthetic dataset within 3 minutes. Here datadir
 
 If you are using SLURM, then you can try running, once you adjust the job details (e.g. email to notify, GPU).
 
+The link to the data is here: https://drive.google.com/drive/folders/128yBriW1IG_3NJ5Rp7APSTZsJqdJdfc1?usp=share_link
+
 ```bash
 sbatch train_hotdog_1.slurm
 ```
