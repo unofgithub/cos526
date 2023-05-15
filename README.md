@@ -45,6 +45,12 @@ conda install pytorch3d -c pytorch3d
 
 # Install other libraries
 conda install numpy matplotlib tqdm imageio
+pip install pytorch-msssim
+pip install DISTS-pytorch
+pip install kornia
+
+# Note
+If using DISTS (not required in most of our experiments), the SLURM node must have internet capabilities to download a pretrained VGG. To bypass this, download the pretrained VGG in advance and modify the local DISTS package to use the version you downloaded.
 
 ## Reproduce
 You can train the model on NeRF synthetic dataset within 3 minutes. Here datadir is the dataset folder path. Dataname is the scene name. Basedir is the log folder path. Data_r is the ratio between the used point number and the initialized point number. Splatting_r is the radius for the splatting.
