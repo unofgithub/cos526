@@ -1,31 +1,25 @@
-# point-radiance
+# COS526 Final Project Report
+### Nobline Yoo
 
 ---
 
 This code release accompanies the following paper:
 
-### Differentiable Point-Based Radiance Fields for Efficient View Synthesis
-Qiang Zhang, Seung-Hwan Baek, Szymon Rusinkiweicz, Felix Heide
+### Perceptual Losses for "Differentiable Point-Based Radiance Fields for Efficient View Synthesis" and Application to Real-World Scenes
+Nobline Yoo
 
-*Siggraph Asia*, 2022
-
- [PDF](https://arxiv.org/pdf/2205.14330.pdf) | [arXiv](https://arxiv.org/abs/2205.14330) 
+ [PDF](https://www.overleaf.com/read/tcdbjcthrrpx)
 **Abstract:** 
-We propose a differentiable rendering algorithm for efficient novel
-view synthesis. By departing from volume-based representations
-in favor of a learned point representation, we improve on existing
-methods more than an order of magnitude in memory and run-
-time, both in training and inference. The method begins with a
-uniformly-sampled random point cloud and learns per-point posi-
-tion and view-dependent appearance, using a differentiable splat-
-based renderer to train the model to reproduce a set of input train-
-ing images with the given pose. Our method is up to 300 × faster
-than NeRF in both training and inference, with only a marginal
-sacrifice in quality, while using less than 10 MB of memory for a
-static scene. For dynamic scenes, our method trains two orders of
-magnitude faster than STNeRF and renders at a near interactive
-rate, while maintaining high image quality and temporal coherence
-even without imposing any temporal-coherency regularizers.
+Novel view synthesis is a challenging task, wherein the goal is to take sparse, unstructured photographs of a scene and render novel views of the same. Recent, successful methods build off of NeRF (Neural Radiance Fields), which uses a volumetric function to represent a scene. While these methods have yielded state-of-the-art metrics, the present issue is that take very long to train and render views. In one recent work, Zhang, Baek et al. seek to address this issue of computational efficiency by building network-free, end-to-end differentiable, point-based radiance fields that use splat rendering for image synthesis. While this method is up to 300x faster than NeRF in both training and inference, it has a few limitations, two of which we address in our work. Firstly, upon closer analysis of the qualitative results, we notice spot-like artifacts in images synthesized on the Blender dataset. Secondly, the authors note that the proposed method requires a foreground object mask, which indicates that in real-world datasets that contains no such masks, the method, as in, would not be appropriate.
+
+In our work, we experiment with new formulations of the training objective (using MS-SSIM for denoising and Canny edge-based loss for accurate super-resolution) to reduce artifacts. Furthermore, we modify the point-cloud refinement process proposed by Zhang, Baek et al. Specifically, we show that by skipping the step where outlier points are removed, the model achieve a 4.68 point increase in PSNR.
+
+Our main contributions are as follows:
+
+
+1. We propose a new formulation of loss that employs a Canny edge-based term to reduce spot-artifacts, while maintaining high levels of detail reconstruction, setting a new baseline in PSNR from Zhang, Baek et al.
+2. Through ablation studies, we identify the successes (denoising) and failure modes (over-smoothing) that come with using the MS-SSIM term.
+3. We apply Zhang, Baek et al. to a new context: real-world scenes with no object segmentation masks (LLFF).
 
 
 ## Installation
