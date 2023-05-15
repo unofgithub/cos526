@@ -29,13 +29,15 @@ class Trainder(object):
         self.weightpath = safe_path(os.path.join(self.logpath, 'weight'))
         self.imgpath = safe_path(os.path.join(self.outpath, 'images'))
         self.imgpath = safe_path(os.path.join(self.imgpath, '{}'.format(self.dataname)))
-        self.logfile = os.path.join(self.outpath, 'log_{}_{}_{}_{}_{}_{}_{}_{}_{}.txt'.format(self.dataname,
+        self.logfile = os.path.join(self.outpath, 'log_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.txt'.format(self.dataname,
             "msssim" + self.args.use_msssim, "msssim_coeff" + str(self.args.lr_msssim), 
             "edges" + self.args.use_edges, "edges_coeff" + str(self.args.lr_edges),
             "canny_sigma" + str(self.args.canny_sigma),
             "canny_low" + str(self.args.canny_low), 
             "canny_high" + str(self.args.canny_high),
-            "dists" + self.args.use_dists))
+            "new_edge_loss" + self.args.new_edge_loss,
+            "lr_mae+" + str(self.args.lr_mae),
+            "use_custom_edgecombo" + self.args.use_custom_edgecombo))
         self.logfile = open(self.logfile, 'w')
         self.model = CoreModel(args).to(device)
         self.loss_fn = torch.nn.MSELoss()
@@ -55,7 +57,39 @@ class Trainder(object):
                                         "canny_sigma" + str(self.args.canny_sigma) + \
                                             "canny_low" + str(self.args.canny_low) + \
                                                    "canny_high" + str(self.args.canny_high) + \
-                                                    "dists" + self.args.use_dists))
+                                                    "new_edge_loss" + self.args.new_edge_loss + \
+                                                        "lr_mae+" + str(self.args.lr_mae) + \
+                                                            "use_custom_edgecombo" + self.args.use_custom_edgecombo))
+
+        # create dirs for test, train, edges if needed
+        safe_path(os.path.join(self.imgpath,
+                        'v2_{:.3f}_{:.3f}'.format(args.data_r, args.splatting_r), 
+                        "msssim" + self.args.use_msssim + \
+                            "msssim_coeff" + str(self.args.lr_msssim) + \
+                                "edges" + self.args.use_edges + \
+                                     "edges_coeff" + str(self.args.lr_edges) + \
+                                        "canny_sigma" + str(self.args.canny_sigma) + \
+                                            "canny_low" + str(self.args.canny_low) + \
+                                                   "canny_high" + str(self.args.canny_high) + \
+                                                    "new_edge_loss" + self.args.new_edge_loss + \
+                                                        "lr_mae+" + str(self.args.lr_mae) + \
+                                                            "use_custom_edgecombo" + self.args.use_custom_edgecombo,
+                                                    "train"))
+        
+        safe_path(os.path.join(self.imgpath,
+                'v2_{:.3f}_{:.3f}'.format(args.data_r, args.splatting_r), 
+                "msssim" + self.args.use_msssim + \
+                    "msssim_coeff" + str(self.args.lr_msssim) + \
+                        "edges" + self.args.use_edges + \
+                                "edges_coeff" + str(self.args.lr_edges) + \
+                                "canny_sigma" + str(self.args.canny_sigma) + \
+                                    "canny_low" + str(self.args.canny_low) + \
+                                            "canny_high" + str(self.args.canny_high) + \
+                                            "new_edge_loss" + self.args.new_edge_loss + \
+                                                "lr_mae+" + str(self.args.lr_mae) + \
+                                                    "use_custom_edgecombo" + self.args.use_custom_edgecombo,
+                                            "test"))
+
         if args.use_edges == "True":
             safe_path(os.path.join(self.imgpath,
                         'v2_{:.3f}_{:.3f}'.format(args.data_r, args.splatting_r), 
@@ -66,8 +100,10 @@ class Trainder(object):
                                         "canny_sigma" + str(self.args.canny_sigma) + \
                                             "canny_low" + str(self.args.canny_low) + \
                                                    "canny_high" + str(self.args.canny_high) + \
-                                                    "dists" + self.args.use_dists,
-                                        "train"))
+                                                    "new_edge_loss" + self.args.new_edge_loss + \
+                                                        "lr_mae+" + str(self.args.lr_mae) + \
+                                                            "use_custom_edgecombo" + self.args.use_custom_edgecombo,
+                                        "edges"))
         self.training_time = 0
         print(self.imgout_path)
 
@@ -78,6 +114,11 @@ class Trainder(object):
         self.coeff_edgeloss = args.lr_edges
         self.coeff_msssimloss = args.lr_msssim
         self.train_cycle = 0
+
+        self.l1_sum = torch.nn.L1Loss(reduction="sum")
+        self.l1 = torch.nn.L1Loss(reduction="none")
+
+        self.coeff_alpha = args.lr_mae
 
     def canny_custom(self, img):
         return canny(img, low_threshold=self.args.canny_low, high_threshold=self.args.canny_high, sigma=(self.args.canny_sigma, self.args.canny_sigma))[1] # 1, 1, H, W
@@ -116,14 +157,16 @@ class Trainder(object):
                 ids = np.random.permutation(dataset.i_split[0])
             else:
                 ids = np.random.permutation(100)
-
-            saveimage_edges_loss_progress = True
             
             #for id in tqdm(ids):
             for id in ids:
                 images = self.model(id)
-                mse_loss = self.loss_fn(images[0], self.imagesgt_train[id])
-                tot_loss = mse_loss + self.lr_s * grad_loss(images[0], self.imagesgt_train[id])
+                if self.args.new_edge_loss == "True":
+                    pixel_loss = self.l1_sum(images[0], self.imagesgt_train[id])
+                    tot_loss = self.coeff_alpha * pixel_loss + self.lr_s * grad_loss(images[0], self.imagesgt_train[id])
+                else:
+                    pixel_loss = self.loss_fn(images[0], self.imagesgt_train[id])
+                    tot_loss = pixel_loss + self.lr_s * grad_loss(images[0], self.imagesgt_train[id])
                 #####################################
                 # ADDED
                 if self.args.use_msssim == "True":
@@ -136,34 +179,53 @@ class Trainder(object):
                     #normalized_predicted = self.normalize(images[0].permute(2,0,1).unsqueeze(dim=0))
                     #normalized_gt = self.normalize(self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0))
                     dists_loss = self.D(images[0].permute(2,0,1).unsqueeze(dim=0), self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0), require_grad=True, batch_average=True) 
-                    tot_loss = tot_loss + 0.1 * dists_loss
+                    tot_loss = tot_loss + 0.01 * dists_loss
 
                 if self.args.use_edges == "True":
                     canny_predicted = self.canny_custom(images[0].permute(2,0,1).unsqueeze(dim=0)) # 1, 1, H, W
                     canny_gt = self.canny_custom(self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0)) # 1, 1, H, W
+                    
+                    if self.args.new_edge_loss == "True":
+                        edge_loss_tot = torch.mean(canny_gt * self.l1(images[0].permute(2,0,1).unsqueeze(dim=0), self.imagesgt_train[id].permute(2,0,1).unsqueeze(dim=0)))
+                        if self.args.use_custom_edgecombo == "True":
+                            tot_loss = tot_loss + (20. * self.coeff_alpha) * edge_loss_tot # CUSTOM COMBO OF WEIGHT LOSS - ADJUST COEFF AS NECESSARY
+                        else:
+                            tot_loss = tot_loss + (1. - self.coeff_alpha) * edge_loss_tot
 
-                    canny_predicted_filtered_pos = canny_predicted[canny_predicted > 0]
-                    canny_gt_filtered_pos = canny_gt[canny_predicted > 0]
+                            ###################
+                            """canny_predicted_filtered_pos = canny_predicted[canny_predicted > 0]
+                            canny_gt_filtered_pos = canny_gt[canny_predicted > 0]
 
-                    canny_predicted_filtered_neg = canny_predicted[canny_predicted <= 0]
-                    canny_gt_filtered_neg = canny_gt[canny_predicted <= 0]
+                            canny_predicted_filtered_neg = canny_predicted[canny_predicted <= 0]
+                            canny_gt_filtered_neg = canny_gt[canny_predicted <= 0]
 
-                    edge_loss_pos = torch.sum(canny_predicted_filtered_pos - canny_gt_filtered_pos)
-                    edge_loss_neg = torch.sum(canny_gt_filtered_neg - canny_predicted_filtered_neg)
-                    edge_loss_tot = edge_loss_pos + edge_loss_neg
-                    tot_loss = tot_loss + self.coeff_edgeloss * edge_loss_tot
+                            edge_loss_pos = torch.sum(canny_predicted_filtered_pos - canny_gt_filtered_pos)
+                            edge_loss_neg = torch.sum(canny_gt_filtered_neg - canny_predicted_filtered_neg)
+                            edge_loss_tot = edge_loss_pos + edge_loss_neg
+                            tot_loss = tot_loss + self.coeff_edgeloss * edge_loss_tot"""
+                            ###################
+                    else:
+                        canny_predicted_filtered_pos = canny_predicted[canny_predicted > 0]
+                        canny_gt_filtered_pos = canny_gt[canny_predicted > 0]
+
+                        canny_predicted_filtered_neg = canny_predicted[canny_predicted <= 0]
+                        canny_gt_filtered_neg = canny_gt[canny_predicted <= 0]
+
+                        edge_loss_pos = torch.sum(canny_predicted_filtered_pos - canny_gt_filtered_pos)
+                        edge_loss_neg = torch.sum(canny_gt_filtered_neg - canny_predicted_filtered_neg)
+                        edge_loss_tot = edge_loss_pos + edge_loss_neg
+                        tot_loss = tot_loss + self.coeff_edgeloss * edge_loss_tot
 
                     # save canny edge comparisions
-                    if epoch % 5 == 0 and saveimage_edges_loss_progress:
+                    if epoch % 9 == 0:
                         canny_predicted = canny_predicted.squeeze(dim=0)
                         canny_gt = canny_gt.squeeze(dim=0)
                         canny_edges = torch.concatenate((canny_predicted,canny_gt),1)
                         #canny_edges = Image.fromarray(canny_edges.astype(np.uint8))
                         #canny_edges.save(os.path.join(self.imgout_path, "train",
                         #    'img_{}_{}_{:.2f}_edges.png'.format(self.dataname, id, mse2psnr(mse_loss).item())))
-                        save_image(canny_edges, os.path.join(self.imgout_path, "train",
+                        save_image(canny_edges, os.path.join(self.imgout_path, "edges",
                             'img_{}_{}_{}_{}_edges.png'.format(id, self.train_cycle, epoch, edge_loss_tot)))
-                        saveimage_edges_loss_progress = False
                 
                 # if visual
                 if epoch % 9 == 0:
@@ -176,27 +238,29 @@ class Trainder(object):
 
                     img_gt = np.concatenate((pred,gt),1)
                     img_gt = Image.fromarray((img_gt*255).astype(np.uint8))
-                    img_gt.save(os.path.join(self.imgout_path,
-                            'img_{}_{}_{}_{:.2f}.png'.format(id, self.train_cycle, epoch, mse2psnr(mse_loss).item())))
+                    img_gt.save(os.path.join(self.imgout_path, "train",
+                            'img_{}_{}_{}_{:.2f}.png'.format(id, self.train_cycle, epoch, mse2psnr(pixel_loss).item())))
                     
                 #####################################
                 self.optimizer.zero_grad()
                 tot_loss.backward()
                 self.optimizer.step()
-                if self.args.use_edges == "True":
+                if self.args.use_edges == "True" and self.args.new_edge_loss == "False":
                     posedgeloss_all.append(edge_loss_pos)
                     negedgeloss_all.append(edge_loss_neg)
                 loss_all.append(tot_loss)
-                psnr_all.append(mse2psnr(mse_loss))
+                psnr_all.append(mse2psnr(pixel_loss))
             self.lr_scheduler.step()
 
-            if self.args.use_edges == "True":
+            if self.args.use_edges == "True" and self.args.new_edge_loss == "False":
                 posedgeloss_e = torch.stack(posedgeloss_all).mean().item()
                 negedgeloss_e = torch.stack(negedgeloss_all).mean().item()
             loss_e = torch.stack(loss_all).mean().item()
             psnr_e = torch.stack(psnr_all).mean().item()
-            if self.args.use_edges == "True":
+            if self.args.use_edges == "True" and self.args.new_edge_loss == "False":
                 info = '-----train-----  epoch:{} posedge_loss:{:.3f} negedge_loss:{:.3f} psnr:{:.3f}'.format(epoch, posedgeloss_e, negedgeloss_e, psnr_e)
+            elif self.args.use_edges == "True" and self.args.new_edge_loss == "True":
+                info = '-----train-----  epoch:{} edge_loss_tot:{:.3f} psnr:{:.3f}'.format(epoch, edge_loss_tot, psnr_e)
             else:
                 info = '-----train-----  epoch:{} loss:{:.3f} psnr:{:.3f}'.format(epoch, loss_e, psnr_e)
 
@@ -224,8 +288,12 @@ class Trainder(object):
             loss_all, psnr_all, edgeloss_all = [], [], []
             for id in ids:
                 images = self.model(id)
+
+                if self.args.new_edge_loss == "True":
+                    pixel_loss = self.l1_sum(images[0], self.imagesgt[id])
+                    tot_loss = self.coeff_alpha * pixel_loss
+               
                 mse_loss = self.loss_fn(images[0], self.imagesgt[id])
-                tot_loss = mse_loss
                 #####################################
                 # ADDED
                 if self.args.use_msssim == "True":
@@ -238,22 +306,29 @@ class Trainder(object):
                     #normalized_predicted = self.normalize(images[0].permute(2,0,1).unsqueeze(dim=0))
                     #normalized_gt = self.normalize(self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0))
                     dists_loss = self.D(images[0].permute(2,0,1).unsqueeze(dim=0), self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0), require_grad=True, batch_average=True) 
-                    tot_loss = tot_loss + 0.1 * dists_loss
+                    tot_loss = tot_loss + 0.01 * dists_loss
 
                 if self.args.use_edges == "True":
                     canny_predicted = self.canny_custom(images[0].permute(2,0,1).unsqueeze(dim=0))
                     canny_gt = self.canny_custom(self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0))
 
-                    canny_predicted_filtered_pos = canny_predicted[canny_predicted > 0]
-                    canny_gt_filtered_pos = canny_gt[canny_predicted > 0]
+                    if self.args.new_edge_loss == "True":
+                        edge_loss_tot = torch.mean(canny_gt * self.l1(images[0].permute(2,0,1).unsqueeze(dim=0), self.imagesgt[id].permute(2,0,1).unsqueeze(dim=0)))
+                        if self.args.use_custom_edgecombo == "True":
+                            tot_loss = tot_loss + (20. * self.coeff_alpha) * edge_loss_tot # CUSTOM COMBO OF WEIGHT LOSS - ADJUST COEFF AS NECESSARY
+                        else:
+                            tot_loss = tot_loss + (1. - self.coeff_alpha) * edge_loss_tot
+                    else:
+                        canny_predicted_filtered_pos = canny_predicted[canny_predicted > 0]
+                        canny_gt_filtered_pos = canny_gt[canny_predicted > 0]
 
-                    canny_predicted_filtered_neg = canny_predicted[canny_predicted <= 0]
-                    canny_gt_filtered_neg = canny_gt[canny_predicted <= 0]
+                        canny_predicted_filtered_neg = canny_predicted[canny_predicted <= 0]
+                        canny_gt_filtered_neg = canny_gt[canny_predicted <= 0]
 
-                    edge_loss_pos = torch.sum(canny_predicted_filtered_pos - canny_gt_filtered_pos)
-                    edge_loss_neg = torch.sum(canny_gt_filtered_neg - canny_predicted_filtered_neg)
-                    edge_loss_tot = edge_loss_pos + edge_loss_neg
-                    tot_loss = tot_loss + self.coeff_edgeloss * edge_loss_tot
+                        edge_loss_pos = torch.sum(canny_predicted_filtered_pos - canny_gt_filtered_pos)
+                        edge_loss_neg = torch.sum(canny_gt_filtered_neg - canny_predicted_filtered_neg)
+                        edge_loss_tot = edge_loss_pos + edge_loss_neg
+                        tot_loss = tot_loss + self.coeff_edgeloss * edge_loss_tot
 
                 #####################################
                 if self.args.use_edges == "True":                
@@ -274,12 +349,12 @@ class Trainder(object):
                         canny_predicted = canny_predicted.squeeze(dim=0)
                         canny_gt = canny_gt.squeeze(dim=0)
                         canny_edges = torch.concatenate((canny_predicted,canny_gt),1)
-                        save_image(canny_edges, os.path.join(self.imgout_path, "train",
+                        save_image(canny_edges, os.path.join(self.imgout_path, "test",
                             'img_{}_{}_{:.2f}_edges.png'.format(self.dataname, id, mse2psnr(mse_loss).item())))
                     #####################################
                     img_gt = np.concatenate((pred,gt),1)
                     img_gt = Image.fromarray((img_gt*255).astype(np.uint8))
-                    img_gt.save(os.path.join(self.imgout_path,
+                    img_gt.save(os.path.join(self.imgout_path, "test",
                             'img_{}_{}_{:.2f}.png'.format(self.dataname, id, mse2psnr(mse_loss).item())))
             if self.args.use_edges == "True":
                 edgeloss_e = torch.stack(edgeloss_all).mean().item()

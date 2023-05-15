@@ -10,6 +10,11 @@ def config_parser():
     parser.add_argument("--use_edges", type=str, default="False", help='whether or not to use canny edge loss')
     parser.add_argument("--lr_edges", type=float, default=2.0, help='the coefficient for the edge loss')
     parser.add_argument("--lr_msssim", type=float, default=1.0, help='the coefficient for the msssim loss')
+    parser.add_argument("--lr_mae", type=float, default=0.7, help='the coefficient for the mae loss')
+
+    parser.add_argument("--use_custom_edgecombo", type=str, default="False", help='whether or not to use custom weight combo for edge-based loss')
+
+    parser.add_argument("--new_edge_loss", type=str, default="False", help='use new edge loss formulation?')
 
     # canny edge parameters
     parser.add_argument("--canny_sigma", type=float, default=1.0, help='canny sigma')

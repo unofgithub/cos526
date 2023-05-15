@@ -55,9 +55,9 @@ If you are using SLURM, then you can try running, once you adjust the job detail
 sbatch train_hotdog_1.slurm
 ```
 
-`train_hotdog_1.slurm` all the way through `train_hotdog_40.slurm` are different experiments with different parameters or losses.
+`train_hotdog_1.slurm` all the way through `train_hotdog_45.slurm` are different experiments with different parameters or losses. `train_fern_remoutlier{True/False}.slurm` experiments with skipping the "remove outliers" step in the point cloud refinement process.
 
-After around 15 - 30 minutes, you can see the following output (the example is tested on one A100 GPU):
+After around 15 - 30 minutes, you can see the following output:
 
 ```
 Training time: ###.## s
@@ -68,7 +68,7 @@ Model size: #.## MB
 
 ## Citation
 
-Our work is build off of:
+Our work builds off of:
 
 ```
 @article{zhang2022differentiable,

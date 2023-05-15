@@ -27,3 +27,465 @@ i_split:  [array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15
        369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381,
        382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394,
        395, 396, 397, 398, 399])]
+Initialization, data:hotdog point:(1341362, 6)
+imagegt shape:  torch.Size([400, 400, 400, 3])
+Using splatting_r:  0.015
+Using data_r:  0.012
+Initialized point number:16096
+/scratch/network/by7705/cos526/point-radiance/logs/output/images/hotdog/v2_0.012_0.015/msssimFalsemsssim_coeff1.0edgesTrueedges_coeff2.0canny_sigma1.0canny_low0.1canny_high0.2new_edge_lossTruelr_mae+0.1use_custom_edgecomboFalse
+-----train-----  epoch:0 edge_loss_tot:17775.000 psnr:-42.514
+-----eval-----  edge_loss:0.004 psnr:21.641
+-----train-----  epoch:1 edge_loss_tot:18916.000 psnr:-41.032
+-----eval-----  edge_loss:0.003 psnr:23.376
+-----train-----  epoch:2 edge_loss_tot:16200.000 psnr:-40.268
+-----eval-----  edge_loss:0.003 psnr:24.477
+-----train-----  epoch:3 edge_loss_tot:13127.000 psnr:-39.801
+-----eval-----  edge_loss:0.003 psnr:25.211
+-----train-----  epoch:4 edge_loss_tot:7627.000 psnr:-39.464
+-----eval-----  edge_loss:0.003 psnr:25.766
+-----train-----  epoch:5 edge_loss_tot:7327.000 psnr:-39.206
+-----eval-----  edge_loss:0.003 psnr:26.257
+-----train-----  epoch:6 edge_loss_tot:7050.000 psnr:-39.010
+-----eval-----  edge_loss:0.003 psnr:26.604
+-----train-----  epoch:7 edge_loss_tot:6831.000 psnr:-38.848
+-----eval-----  edge_loss:0.003 psnr:26.854
+-----train-----  epoch:8 edge_loss_tot:6770.000 psnr:-38.703
+-----eval-----  edge_loss:0.003 psnr:27.143
+-----train-----  epoch:9 edge_loss_tot:4992.000 psnr:-38.590
+-----eval-----  edge_loss:0.003 psnr:27.262
+-----train-----  epoch:10 edge_loss_tot:5982.000 psnr:-38.486
+-----eval-----  edge_loss:0.003 psnr:27.468
+-----train-----  epoch:11 edge_loss_tot:11558.000 psnr:-38.410
+-----eval-----  edge_loss:0.003 psnr:27.601
+-----train-----  epoch:12 edge_loss_tot:11279.000 psnr:-38.347
+-----eval-----  edge_loss:0.003 psnr:27.687
+-----train-----  epoch:13 edge_loss_tot:7550.000 psnr:-38.284
+-----eval-----  edge_loss:0.003 psnr:27.766
+-----train-----  epoch:14 edge_loss_tot:5609.000 psnr:-38.241
+-----eval-----  edge_loss:0.002 psnr:27.903
+-----train-----  epoch:15 edge_loss_tot:9328.000 psnr:-38.178
+-----eval-----  edge_loss:0.002 psnr:27.967
+-----train-----  epoch:16 edge_loss_tot:9974.000 psnr:-38.150
+-----eval-----  edge_loss:0.002 psnr:28.025
+-----train-----  epoch:17 edge_loss_tot:4495.000 psnr:-38.093
+-----eval-----  edge_loss:0.002 psnr:28.147
+-----train-----  epoch:18 edge_loss_tot:7295.000 psnr:-38.059
+-----eval-----  edge_loss:0.002 psnr:28.171
+-----train-----  epoch:19 edge_loss_tot:4761.000 psnr:-38.019
+-----eval-----  edge_loss:0.002 psnr:28.255
+-----train-----  epoch:0 edge_loss_tot:16260.000 psnr:-42.657
+-----eval-----  edge_loss:0.004 psnr:24.389
+-----train-----  epoch:1 edge_loss_tot:17721.000 psnr:-40.590
+-----eval-----  edge_loss:0.003 psnr:25.783
+-----train-----  epoch:2 edge_loss_tot:13902.000 psnr:-39.902
+-----eval-----  edge_loss:0.003 psnr:26.926
+-----train-----  epoch:3 edge_loss_tot:10069.000 psnr:-39.281
+-----eval-----  edge_loss:0.003 psnr:27.094
+-----train-----  epoch:4 edge_loss_tot:11938.000 psnr:-39.095
+-----eval-----  edge_loss:0.003 psnr:28.234
+-----train-----  epoch:5 edge_loss_tot:8597.000 psnr:-38.762
+-----eval-----  edge_loss:0.003 psnr:27.668
+-----train-----  epoch:6 edge_loss_tot:11565.000 psnr:-38.653
+-----eval-----  edge_loss:0.002 psnr:28.659
+-----train-----  epoch:7 edge_loss_tot:9078.000 psnr:-38.270
+-----eval-----  edge_loss:0.002 psnr:28.948
+-----train-----  epoch:8 edge_loss_tot:9473.000 psnr:-38.124
+-----eval-----  edge_loss:0.002 psnr:29.157
+-----train-----  epoch:9 edge_loss_tot:8986.000 psnr:-37.827
+-----eval-----  edge_loss:0.002 psnr:29.854
+-----train-----  epoch:10 edge_loss_tot:7180.000 psnr:-37.718
+-----eval-----  edge_loss:0.002 psnr:29.787
+-----train-----  epoch:11 edge_loss_tot:7397.000 psnr:-37.597
+-----eval-----  edge_loss:0.002 psnr:29.689
+-----train-----  epoch:12 edge_loss_tot:4528.000 psnr:-37.430
+-----eval-----  edge_loss:0.002 psnr:30.168
+-----train-----  epoch:13 edge_loss_tot:7184.000 psnr:-37.215
+-----eval-----  edge_loss:0.002 psnr:30.355
+-----train-----  epoch:14 edge_loss_tot:5370.000 psnr:-37.258
+-----eval-----  edge_loss:0.002 psnr:30.469
+-----train-----  epoch:15 edge_loss_tot:7844.000 psnr:-37.167
+-----eval-----  edge_loss:0.002 psnr:30.520
+-----train-----  epoch:16 edge_loss_tot:4444.000 psnr:-37.025
+-----eval-----  edge_loss:0.002 psnr:30.595
+-----train-----  epoch:17 edge_loss_tot:6747.000 psnr:-36.918
+-----eval-----  edge_loss:0.002 psnr:30.838
+-----train-----  epoch:18 edge_loss_tot:4380.000 psnr:-36.835
+-----eval-----  edge_loss:0.002 psnr:30.761
+-----train-----  epoch:19 edge_loss_tot:4136.000 psnr:-36.733
+-----eval-----  edge_loss:0.002 psnr:30.760
+-----train-----  epoch:20 edge_loss_tot:6633.000 psnr:-36.677
+-----eval-----  edge_loss:0.002 psnr:30.889
+-----train-----  epoch:21 edge_loss_tot:4234.000 psnr:-36.659
+-----eval-----  edge_loss:0.002 psnr:31.017
+-----train-----  epoch:22 edge_loss_tot:4356.000 psnr:-36.602
+-----eval-----  edge_loss:0.002 psnr:30.977
+-----train-----  epoch:23 edge_loss_tot:5730.000 psnr:-36.523
+-----eval-----  edge_loss:0.002 psnr:31.041
+-----train-----  epoch:24 edge_loss_tot:5224.000 psnr:-36.475
+-----eval-----  edge_loss:0.002 psnr:31.074
+-----train-----  epoch:25 edge_loss_tot:4850.000 psnr:-36.465
+-----eval-----  edge_loss:0.002 psnr:31.013
+-----train-----  epoch:26 edge_loss_tot:6863.000 psnr:-36.381
+-----eval-----  edge_loss:0.002 psnr:31.104
+-----train-----  epoch:27 edge_loss_tot:5408.000 psnr:-36.359
+-----eval-----  edge_loss:0.002 psnr:31.163
+-----train-----  epoch:28 edge_loss_tot:4966.000 psnr:-36.337
+-----eval-----  edge_loss:0.002 psnr:31.215
+-----train-----  epoch:29 edge_loss_tot:6001.000 psnr:-36.284
+-----eval-----  edge_loss:0.002 psnr:31.217
+-----train-----  epoch:0 edge_loss_tot:4916.000 psnr:-39.108
+-----eval-----  edge_loss:0.002 psnr:28.215
+-----train-----  epoch:1 edge_loss_tot:9945.000 psnr:-38.374
+-----eval-----  edge_loss:0.002 psnr:28.363
+-----train-----  epoch:2 edge_loss_tot:6647.000 psnr:-37.850
+-----eval-----  edge_loss:0.002 psnr:29.977
+-----train-----  epoch:3 edge_loss_tot:4637.000 psnr:-37.804
+-----eval-----  edge_loss:0.002 psnr:30.443
+-----train-----  epoch:4 edge_loss_tot:9186.000 psnr:-37.548
+-----eval-----  edge_loss:0.002 psnr:30.759
+-----train-----  epoch:5 edge_loss_tot:4389.000 psnr:-37.700
+-----eval-----  edge_loss:0.002 psnr:31.396
+-----train-----  epoch:6 edge_loss_tot:5097.000 psnr:-37.207
+-----eval-----  edge_loss:0.002 psnr:31.751
+-----train-----  epoch:7 edge_loss_tot:8839.000 psnr:-37.015
+-----eval-----  edge_loss:0.002 psnr:30.434
+-----train-----  epoch:8 edge_loss_tot:6166.000 psnr:-37.072
+-----eval-----  edge_loss:0.002 psnr:31.034
+-----train-----  epoch:9 edge_loss_tot:3682.000 psnr:-36.949
+-----eval-----  edge_loss:0.002 psnr:31.751
+-----train-----  epoch:10 edge_loss_tot:3047.000 psnr:-36.552
+-----eval-----  edge_loss:0.002 psnr:32.255
+-----train-----  epoch:11 edge_loss_tot:4199.000 psnr:-36.354
+-----eval-----  edge_loss:0.002 psnr:32.376
+-----train-----  epoch:12 edge_loss_tot:4536.000 psnr:-36.352
+-----eval-----  edge_loss:0.002 psnr:31.804
+-----train-----  epoch:13 edge_loss_tot:4421.000 psnr:-36.297
+-----eval-----  edge_loss:0.002 psnr:32.700
+-----train-----  epoch:14 edge_loss_tot:3456.000 psnr:-35.969
+-----eval-----  edge_loss:0.002 psnr:32.779
+-----train-----  epoch:15 edge_loss_tot:3916.000 psnr:-35.889
+-----eval-----  edge_loss:0.002 psnr:32.988
+-----train-----  epoch:16 edge_loss_tot:3639.000 psnr:-35.841
+-----eval-----  edge_loss:0.002 psnr:33.132
+-----train-----  epoch:17 edge_loss_tot:3220.000 psnr:-35.672
+-----eval-----  edge_loss:0.002 psnr:33.010
+-----train-----  epoch:18 edge_loss_tot:3986.000 psnr:-35.553
+-----eval-----  edge_loss:0.002 psnr:33.396
+-----train-----  epoch:19 edge_loss_tot:3585.000 psnr:-35.478
+-----eval-----  edge_loss:0.002 psnr:33.525
+-----train-----  epoch:20 edge_loss_tot:2646.000 psnr:-35.519
+-----eval-----  edge_loss:0.002 psnr:33.085
+-----train-----  epoch:21 edge_loss_tot:2709.000 psnr:-35.278
+-----eval-----  edge_loss:0.002 psnr:33.435
+-----train-----  epoch:22 edge_loss_tot:2658.000 psnr:-35.135
+-----eval-----  edge_loss:0.002 psnr:33.478
+-----train-----  epoch:23 edge_loss_tot:2943.000 psnr:-35.103
+-----eval-----  edge_loss:0.002 psnr:33.543
+-----train-----  epoch:24 edge_loss_tot:2532.000 psnr:-35.093
+-----eval-----  edge_loss:0.002 psnr:33.741
+-----train-----  epoch:25 edge_loss_tot:3598.000 psnr:-34.977
+-----eval-----  edge_loss:0.002 psnr:33.823
+-----train-----  epoch:26 edge_loss_tot:2777.000 psnr:-34.858
+-----eval-----  edge_loss:0.002 psnr:33.870
+-----train-----  epoch:27 edge_loss_tot:2397.000 psnr:-34.805
+-----eval-----  edge_loss:0.002 psnr:33.839
+-----train-----  epoch:28 edge_loss_tot:2223.000 psnr:-34.758
+-----eval-----  edge_loss:0.001 psnr:33.929
+-----train-----  epoch:29 edge_loss_tot:3250.000 psnr:-34.759
+-----eval-----  edge_loss:0.002 psnr:33.904
+-----train-----  epoch:0 edge_loss_tot:6960.000 psnr:-38.838
+-----eval-----  edge_loss:0.002 psnr:29.238
+-----train-----  epoch:1 edge_loss_tot:7500.000 psnr:-38.279
+-----eval-----  edge_loss:0.002 psnr:29.906
+-----train-----  epoch:2 edge_loss_tot:9606.000 psnr:-38.025
+-----eval-----  edge_loss:0.002 psnr:29.330
+-----train-----  epoch:3 edge_loss_tot:5755.000 psnr:-37.770
+-----eval-----  edge_loss:0.002 psnr:30.468
+-----train-----  epoch:4 edge_loss_tot:6204.000 psnr:-37.615
+-----eval-----  edge_loss:0.002 psnr:30.268
+-----train-----  epoch:5 edge_loss_tot:3653.000 psnr:-37.396
+-----eval-----  edge_loss:0.002 psnr:30.625
+-----train-----  epoch:6 edge_loss_tot:4465.000 psnr:-37.528
+-----eval-----  edge_loss:0.002 psnr:30.093
+-----train-----  epoch:7 edge_loss_tot:6814.000 psnr:-37.354
+-----eval-----  edge_loss:0.002 psnr:30.563
+-----train-----  epoch:8 edge_loss_tot:5876.000 psnr:-36.785
+-----eval-----  edge_loss:0.002 psnr:31.676
+-----train-----  epoch:9 edge_loss_tot:3574.000 psnr:-36.624
+-----eval-----  edge_loss:0.002 psnr:32.459
+-----train-----  epoch:10 edge_loss_tot:4199.000 psnr:-36.463
+-----eval-----  edge_loss:0.002 psnr:31.936
+-----train-----  epoch:11 edge_loss_tot:3432.000 psnr:-36.238
+-----eval-----  edge_loss:0.002 psnr:32.292
+-----train-----  epoch:12 edge_loss_tot:3144.000 psnr:-36.156
+-----eval-----  edge_loss:0.002 psnr:32.958
+-----train-----  epoch:13 edge_loss_tot:4582.000 psnr:-36.075
+-----eval-----  edge_loss:0.002 psnr:32.879
+-----train-----  epoch:14 edge_loss_tot:3462.000 psnr:-35.908
+-----eval-----  edge_loss:0.002 psnr:32.985
+-----train-----  epoch:15 edge_loss_tot:3245.000 psnr:-35.759
+-----eval-----  edge_loss:0.002 psnr:32.949
+-----train-----  epoch:16 edge_loss_tot:3819.000 psnr:-35.591
+-----eval-----  edge_loss:0.002 psnr:33.248
+-----train-----  epoch:17 edge_loss_tot:3028.000 psnr:-35.462
+-----eval-----  edge_loss:0.002 psnr:33.563
+-----train-----  epoch:18 edge_loss_tot:3042.000 psnr:-35.325
+-----eval-----  edge_loss:0.002 psnr:33.525
+-----train-----  epoch:19 edge_loss_tot:3472.000 psnr:-35.233
+-----eval-----  edge_loss:0.002 psnr:33.708
+-----train-----  epoch:20 edge_loss_tot:2647.000 psnr:-35.164
+-----eval-----  edge_loss:0.001 psnr:33.903
+-----train-----  epoch:21 edge_loss_tot:3662.000 psnr:-35.065
+-----eval-----  edge_loss:0.001 psnr:34.004
+-----train-----  epoch:22 edge_loss_tot:4076.000 psnr:-34.909
+-----eval-----  edge_loss:0.001 psnr:33.873
+-----train-----  epoch:23 edge_loss_tot:3345.000 psnr:-34.974
+-----eval-----  edge_loss:0.001 psnr:34.073
+-----train-----  epoch:24 edge_loss_tot:3992.000 psnr:-34.756
+-----eval-----  edge_loss:0.001 psnr:34.233
+-----train-----  epoch:25 edge_loss_tot:2250.000 psnr:-34.663
+-----eval-----  edge_loss:0.001 psnr:34.196
+-----train-----  epoch:26 edge_loss_tot:3441.000 psnr:-34.651
+-----eval-----  edge_loss:0.001 psnr:34.324
+-----train-----  epoch:27 edge_loss_tot:2262.000 psnr:-34.548
+-----eval-----  edge_loss:0.001 psnr:34.264
+-----train-----  epoch:28 edge_loss_tot:2290.000 psnr:-34.490
+-----eval-----  edge_loss:0.001 psnr:34.275
+-----train-----  epoch:29 edge_loss_tot:3143.000 psnr:-34.435
+-----eval-----  edge_loss:0.001 psnr:34.424
+-----eval-----  edge_loss:0.001 psnr:34.424
+Training time: 956.30 s
+Rendering quality: 34.42 dB
+Rendering speed: 103.45 fps
+Model size: 7.33 MB
+Initialization, data:hotdog point:(1341362, 6)
+imagegt shape:  torch.Size([400, 400, 400, 3])
+Using splatting_r:  0.015
+Using data_r:  0.012
+Initialized point number:16096
+/scratch/network/by7705/cos526/point-radiance/logs/output/images/hotdog/v2_0.012_0.015/msssimFalsemsssim_coeff1.0edgesTrueedges_coeff2.0canny_sigma1.0canny_low0.1canny_high0.2new_edge_lossTruelr_mae+0.8use_custom_edgecomboFalse
+-----train-----  epoch:0 edge_loss_tot:17764.000 psnr:-42.514
+-----eval-----  edge_loss:0.004 psnr:21.643
+-----train-----  epoch:1 edge_loss_tot:19023.000 psnr:-41.032
+-----eval-----  edge_loss:0.004 psnr:23.371
+-----train-----  epoch:2 edge_loss_tot:16172.000 psnr:-40.268
+-----eval-----  edge_loss:0.003 psnr:24.479
+-----train-----  epoch:3 edge_loss_tot:12997.000 psnr:-39.798
+-----eval-----  edge_loss:0.003 psnr:25.235
+-----train-----  epoch:4 edge_loss_tot:7658.000 psnr:-39.456
+-----eval-----  edge_loss:0.003 psnr:25.772
+-----train-----  epoch:5 edge_loss_tot:7321.000 psnr:-39.198
+-----eval-----  edge_loss:0.003 psnr:26.245
+-----train-----  epoch:6 edge_loss_tot:7000.000 psnr:-39.008
+-----eval-----  edge_loss:0.003 psnr:26.581
+-----train-----  epoch:7 edge_loss_tot:6881.000 psnr:-38.853
+-----eval-----  edge_loss:0.003 psnr:26.814
+-----train-----  epoch:8 edge_loss_tot:6802.000 psnr:-38.709
+-----eval-----  edge_loss:0.003 psnr:27.134
+-----train-----  epoch:9 edge_loss_tot:4926.000 psnr:-38.589
+-----eval-----  edge_loss:0.003 psnr:27.265
+-----train-----  epoch:10 edge_loss_tot:6143.000 psnr:-38.482
+-----eval-----  edge_loss:0.003 psnr:27.485
+-----train-----  epoch:11 edge_loss_tot:11594.000 psnr:-38.403
+-----eval-----  edge_loss:0.003 psnr:27.620
+-----train-----  epoch:12 edge_loss_tot:11313.000 psnr:-38.336
+-----eval-----  edge_loss:0.003 psnr:27.710
+-----train-----  epoch:13 edge_loss_tot:7513.000 psnr:-38.272
+-----eval-----  edge_loss:0.003 psnr:27.792
+-----train-----  epoch:14 edge_loss_tot:5659.000 psnr:-38.227
+-----eval-----  edge_loss:0.002 psnr:27.950
+-----train-----  epoch:15 edge_loss_tot:9256.000 psnr:-38.164
+-----eval-----  edge_loss:0.002 psnr:27.996
+-----train-----  epoch:16 edge_loss_tot:9949.000 psnr:-38.136
+-----eval-----  edge_loss:0.002 psnr:28.060
+-----train-----  epoch:17 edge_loss_tot:4441.000 psnr:-38.080
+-----eval-----  edge_loss:0.002 psnr:28.160
+-----train-----  epoch:18 edge_loss_tot:7137.000 psnr:-38.049
+-----eval-----  edge_loss:0.002 psnr:28.172
+-----train-----  epoch:19 edge_loss_tot:4944.000 psnr:-38.013
+-----eval-----  edge_loss:0.002 psnr:28.260
+-----train-----  epoch:0 edge_loss_tot:16515.000 psnr:-42.656
+-----eval-----  edge_loss:0.004 psnr:24.386
+-----train-----  epoch:1 edge_loss_tot:17867.000 psnr:-40.585
+-----eval-----  edge_loss:0.003 psnr:25.771
+-----train-----  epoch:2 edge_loss_tot:13679.000 psnr:-39.900
+-----eval-----  edge_loss:0.003 psnr:26.964
+-----train-----  epoch:3 edge_loss_tot:10033.000 psnr:-39.286
+-----eval-----  edge_loss:0.003 psnr:27.049
+-----train-----  epoch:4 edge_loss_tot:12228.000 psnr:-39.101
+-----eval-----  edge_loss:0.003 psnr:28.200
+-----train-----  epoch:5 edge_loss_tot:8462.000 psnr:-38.774
+-----eval-----  edge_loss:0.003 psnr:27.660
+-----train-----  epoch:6 edge_loss_tot:11721.000 psnr:-38.655
+-----eval-----  edge_loss:0.002 psnr:28.646
+-----train-----  epoch:7 edge_loss_tot:9131.000 psnr:-38.277
+-----eval-----  edge_loss:0.002 psnr:28.937
+-----train-----  epoch:8 edge_loss_tot:9349.000 psnr:-38.124
+-----eval-----  edge_loss:0.002 psnr:29.115
+-----train-----  epoch:9 edge_loss_tot:8591.000 psnr:-37.832
+-----eval-----  edge_loss:0.002 psnr:29.821
+-----train-----  epoch:10 edge_loss_tot:7437.000 psnr:-37.731
+-----eval-----  edge_loss:0.002 psnr:29.764
+-----train-----  epoch:11 edge_loss_tot:7767.000 psnr:-37.608
+-----eval-----  edge_loss:0.002 psnr:29.666
+-----train-----  epoch:12 edge_loss_tot:4644.000 psnr:-37.436
+-----eval-----  edge_loss:0.002 psnr:30.132
+-----train-----  epoch:13 edge_loss_tot:7479.000 psnr:-37.225
+-----eval-----  edge_loss:0.002 psnr:30.331
+-----train-----  epoch:14 edge_loss_tot:5362.000 psnr:-37.266
+-----eval-----  edge_loss:0.002 psnr:30.451
+-----train-----  epoch:15 edge_loss_tot:7911.000 psnr:-37.173
+-----eval-----  edge_loss:0.002 psnr:30.513
+-----train-----  epoch:16 edge_loss_tot:4484.000 psnr:-37.026
+-----eval-----  edge_loss:0.002 psnr:30.585
+-----train-----  epoch:17 edge_loss_tot:6807.000 psnr:-36.923
+-----eval-----  edge_loss:0.002 psnr:30.814
+-----train-----  epoch:18 edge_loss_tot:4370.000 psnr:-36.838
+-----eval-----  edge_loss:0.002 psnr:30.743
+-----train-----  epoch:19 edge_loss_tot:4335.000 psnr:-36.735
+-----eval-----  edge_loss:0.002 psnr:30.759
+-----train-----  epoch:20 edge_loss_tot:7111.000 psnr:-36.679
+-----eval-----  edge_loss:0.002 psnr:30.892
+-----train-----  epoch:21 edge_loss_tot:4479.000 psnr:-36.658
+-----eval-----  edge_loss:0.002 psnr:31.017
+-----train-----  epoch:22 edge_loss_tot:4503.000 psnr:-36.600
+-----eval-----  edge_loss:0.002 psnr:30.978
+-----train-----  epoch:23 edge_loss_tot:5839.000 psnr:-36.523
+-----eval-----  edge_loss:0.002 psnr:31.034
+-----train-----  epoch:24 edge_loss_tot:5154.000 psnr:-36.475
+-----eval-----  edge_loss:0.002 psnr:31.073
+-----train-----  epoch:25 edge_loss_tot:4267.000 psnr:-36.462
+-----eval-----  edge_loss:0.002 psnr:31.012
+-----train-----  epoch:26 edge_loss_tot:7061.000 psnr:-36.380
+-----eval-----  edge_loss:0.002 psnr:31.105
+-----train-----  epoch:27 edge_loss_tot:5388.000 psnr:-36.359
+-----eval-----  edge_loss:0.002 psnr:31.158
+-----train-----  epoch:28 edge_loss_tot:5024.000 psnr:-36.337
+-----eval-----  edge_loss:0.002 psnr:31.212
+-----train-----  epoch:29 edge_loss_tot:5661.000 psnr:-36.282
+-----eval-----  edge_loss:0.002 psnr:31.208
+-----train-----  epoch:0 edge_loss_tot:4898.000 psnr:-39.107
+-----eval-----  edge_loss:0.002 psnr:28.242
+-----train-----  epoch:1 edge_loss_tot:9448.000 psnr:-38.379
+-----eval-----  edge_loss:0.002 psnr:28.374
+-----train-----  epoch:2 edge_loss_tot:6612.000 psnr:-37.848
+-----eval-----  edge_loss:0.002 psnr:30.002
+-----train-----  epoch:3 edge_loss_tot:4721.000 psnr:-37.806
+-----eval-----  edge_loss:0.002 psnr:30.470
+-----train-----  epoch:4 edge_loss_tot:8675.000 psnr:-37.540
+-----eval-----  edge_loss:0.002 psnr:30.789
+-----train-----  epoch:5 edge_loss_tot:4639.000 psnr:-37.708
+-----eval-----  edge_loss:0.002 psnr:31.382
+-----train-----  epoch:6 edge_loss_tot:5098.000 psnr:-37.205
+-----eval-----  edge_loss:0.002 psnr:31.747
+-----train-----  epoch:7 edge_loss_tot:8833.000 psnr:-37.023
+-----eval-----  edge_loss:0.002 psnr:30.460
+-----train-----  epoch:8 edge_loss_tot:5948.000 psnr:-37.066
+-----eval-----  edge_loss:0.002 psnr:31.105
+-----train-----  epoch:9 edge_loss_tot:3525.000 psnr:-36.950
+-----eval-----  edge_loss:0.002 psnr:31.769
+-----train-----  epoch:10 edge_loss_tot:3088.000 psnr:-36.545
+-----eval-----  edge_loss:0.002 psnr:32.255
+-----train-----  epoch:11 edge_loss_tot:4046.000 psnr:-36.356
+-----eval-----  edge_loss:0.002 psnr:32.406
+-----train-----  epoch:12 edge_loss_tot:4611.000 psnr:-36.351
+-----eval-----  edge_loss:0.002 psnr:31.813
+-----train-----  epoch:13 edge_loss_tot:4648.000 psnr:-36.304
+-----eval-----  edge_loss:0.002 psnr:32.700
+-----train-----  epoch:14 edge_loss_tot:3588.000 psnr:-35.974
+-----eval-----  edge_loss:0.002 psnr:32.782
+-----train-----  epoch:15 edge_loss_tot:3954.000 psnr:-35.887
+-----eval-----  edge_loss:0.002 psnr:32.979
+-----train-----  epoch:16 edge_loss_tot:3576.000 psnr:-35.841
+-----eval-----  edge_loss:0.002 psnr:33.118
+-----train-----  epoch:17 edge_loss_tot:3278.000 psnr:-35.674
+-----eval-----  edge_loss:0.002 psnr:33.030
+-----train-----  epoch:18 edge_loss_tot:4033.000 psnr:-35.555
+-----eval-----  edge_loss:0.002 psnr:33.383
+-----train-----  epoch:19 edge_loss_tot:3600.000 psnr:-35.479
+-----eval-----  edge_loss:0.002 psnr:33.518
+-----train-----  epoch:20 edge_loss_tot:2605.000 psnr:-35.520
+-----eval-----  edge_loss:0.002 psnr:33.083
+-----train-----  epoch:21 edge_loss_tot:2881.000 psnr:-35.281
+-----eval-----  edge_loss:0.002 psnr:33.417
+-----train-----  epoch:22 edge_loss_tot:2642.000 psnr:-35.138
+-----eval-----  edge_loss:0.002 psnr:33.468
+-----train-----  epoch:23 edge_loss_tot:2976.000 psnr:-35.109
+-----eval-----  edge_loss:0.002 psnr:33.540
+-----train-----  epoch:24 edge_loss_tot:2426.000 psnr:-35.093
+-----eval-----  edge_loss:0.002 psnr:33.736
+-----train-----  epoch:25 edge_loss_tot:3463.000 psnr:-34.976
+-----eval-----  edge_loss:0.002 psnr:33.815
+-----train-----  epoch:26 edge_loss_tot:2732.000 psnr:-34.863
+-----eval-----  edge_loss:0.002 psnr:33.854
+-----train-----  epoch:27 edge_loss_tot:2385.000 psnr:-34.811
+-----eval-----  edge_loss:0.002 psnr:33.832
+-----train-----  epoch:28 edge_loss_tot:2207.000 psnr:-34.764
+-----eval-----  edge_loss:0.001 psnr:33.909
+-----train-----  epoch:29 edge_loss_tot:3291.000 psnr:-34.763
+-----eval-----  edge_loss:0.002 psnr:33.900
+-----train-----  epoch:0 edge_loss_tot:6828.000 psnr:-38.851
+-----eval-----  edge_loss:0.002 psnr:29.208
+-----train-----  epoch:1 edge_loss_tot:7373.000 psnr:-38.279
+-----eval-----  edge_loss:0.002 psnr:29.885
+-----train-----  epoch:2 edge_loss_tot:9460.000 psnr:-38.033
+-----eval-----  edge_loss:0.002 psnr:29.289
+-----train-----  epoch:3 edge_loss_tot:6116.000 psnr:-37.768
+-----eval-----  edge_loss:0.002 psnr:30.485
+-----train-----  epoch:4 edge_loss_tot:6421.000 psnr:-37.615
+-----eval-----  edge_loss:0.002 psnr:30.264
+-----train-----  epoch:5 edge_loss_tot:3693.000 psnr:-37.387
+-----eval-----  edge_loss:0.002 psnr:30.647
+-----train-----  epoch:6 edge_loss_tot:4285.000 psnr:-37.527
+-----eval-----  edge_loss:0.002 psnr:30.079
+-----train-----  epoch:7 edge_loss_tot:6851.000 psnr:-37.353
+-----eval-----  edge_loss:0.002 psnr:30.582
+-----train-----  epoch:8 edge_loss_tot:5919.000 psnr:-36.781
+-----eval-----  edge_loss:0.002 psnr:31.669
+-----train-----  epoch:9 edge_loss_tot:3605.000 psnr:-36.619
+-----eval-----  edge_loss:0.002 psnr:32.476
+-----train-----  epoch:10 edge_loss_tot:4186.000 psnr:-36.460
+-----eval-----  edge_loss:0.002 psnr:31.961
+-----train-----  epoch:11 edge_loss_tot:3493.000 psnr:-36.237
+-----eval-----  edge_loss:0.002 psnr:32.310
+-----train-----  epoch:12 edge_loss_tot:3159.000 psnr:-36.157
+-----eval-----  edge_loss:0.002 psnr:32.974
+-----train-----  epoch:13 edge_loss_tot:4716.000 psnr:-36.068
+-----eval-----  edge_loss:0.002 psnr:32.877
+-----train-----  epoch:14 edge_loss_tot:3316.000 psnr:-35.908
+-----eval-----  edge_loss:0.002 psnr:32.974
+-----train-----  epoch:15 edge_loss_tot:3288.000 psnr:-35.762
+-----eval-----  edge_loss:0.002 psnr:32.979
+-----train-----  epoch:16 edge_loss_tot:3814.000 psnr:-35.583
+-----eval-----  edge_loss:0.002 psnr:33.285
+-----train-----  epoch:17 edge_loss_tot:3121.000 psnr:-35.458
+-----eval-----  edge_loss:0.002 psnr:33.579
+-----train-----  epoch:18 edge_loss_tot:3064.000 psnr:-35.326
+-----eval-----  edge_loss:0.002 psnr:33.550
+-----train-----  epoch:19 edge_loss_tot:3322.000 psnr:-35.231
+-----eval-----  edge_loss:0.001 psnr:33.730
+-----train-----  epoch:20 edge_loss_tot:2666.000 psnr:-35.163
+-----eval-----  edge_loss:0.001 psnr:33.909
+-----train-----  epoch:21 edge_loss_tot:3571.000 psnr:-35.061
+-----eval-----  edge_loss:0.001 psnr:34.028
+-----train-----  epoch:22 edge_loss_tot:4150.000 psnr:-34.902
+-----eval-----  edge_loss:0.001 psnr:33.874
+-----train-----  epoch:23 edge_loss_tot:3116.000 psnr:-34.976
+-----eval-----  edge_loss:0.001 psnr:34.089
+-----train-----  epoch:24 edge_loss_tot:4022.000 psnr:-34.755
+-----eval-----  edge_loss:0.001 psnr:34.257
+-----train-----  epoch:25 edge_loss_tot:2224.000 psnr:-34.660
+-----eval-----  edge_loss:0.001 psnr:34.205
+-----train-----  epoch:26 edge_loss_tot:3353.000 psnr:-34.650
+-----eval-----  edge_loss:0.001 psnr:34.338
+-----train-----  epoch:27 edge_loss_tot:2205.000 psnr:-34.548
+-----eval-----  edge_loss:0.001 psnr:34.274
+-----train-----  epoch:28 edge_loss_tot:2287.000 psnr:-34.486
+-----eval-----  edge_loss:0.001 psnr:34.276
+-----train-----  epoch:29 edge_loss_tot:3271.000 psnr:-34.433
+-----eval-----  edge_loss:0.001 psnr:34.445
+-----eval-----  edge_loss:0.001 psnr:34.445
+Training time: 932.08 s
+Rendering quality: 34.44 dB
+Rendering speed: 103.63 fps
+Model size: 7.33 MB
