@@ -8,7 +8,7 @@ This code release accompanies the following paper:
 ### Perceptual Losses for "Differentiable Point-Based Radiance Fields for Efficient View Synthesis" and Application to Real-World Scenes
 Nobline Yoo
 
- [PDF](https://www.overleaf.com/read/tcdbjcthrrpx)
+ [PDF](https://drive.google.com/file/d/1yQlXWEVhJXllgsHo0X-XxVVum_FvRMej/view?usp=sharing)
 **Abstract:** 
 Novel view synthesis is a challenging task, wherein the goal is to take sparse, unstructured photographs of a scene and render novel views of the same. Recent, successful methods build off of NeRF (Neural Radiance Fields), which uses a volumetric function to represent a scene. While these methods have yielded state-of-the-art metrics, the present issue is that take very long to train and render views. In one recent work, Zhang, Baek et al. seek to address this issue of computational efficiency by building network-free, end-to-end differentiable, point-based radiance fields that use splat rendering for image synthesis. While this method is up to 300x faster than NeRF in both training and inference, it has a few limitations, two of which we address in our work. Firstly, upon closer analysis of the qualitative results, we notice spot-like artifacts in images synthesized on the Blender dataset. Secondly, the authors note that the proposed method requires a foreground object mask, which indicates that in real-world datasets that contains no such masks, the method, as in, would not be appropriate.
 
